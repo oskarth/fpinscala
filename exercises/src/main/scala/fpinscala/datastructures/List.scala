@@ -43,7 +43,10 @@ object List { // `List` companion object. Contains functions for creating and wo
   
   def sum2(ns: List[Int]) = 
     foldRight(ns, 0)((x,y) => x + y)
-  
+
+  // Ex 3.7: No, because + and * are fundamentally different in that regard.
+  // No, it's a strict vs laziness thing. We evaluate all the arguments before
+  // calling our function f. Possible with non-strict evaluation.
   def product2(ns: List[Double]) = 
     foldRight(ns, 1.0)(_ * _) // `_ * _` is more concise notation for `(x,y) => x * y`; see sidebar
 
