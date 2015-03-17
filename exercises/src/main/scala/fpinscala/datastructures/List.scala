@@ -68,7 +68,15 @@ object List { // `List` companion object. Contains functions for creating and wo
     }
   }
 
-  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = sys.error("todo")
+  // much better is case Cons(h,t) if f(h) => dropWhile(t,f)
+  // and case _ =>
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] =
+    l match {
+      case Nil => sys.error("dropWhile of empty list")
+      case Cons(h, t) =>
+        if (f(h)) dropWhile(t, f)
+        else Cons(h, t)
+    }
 
   def init[A](l: List[A]): List[A] = sys.error("todo")
 
