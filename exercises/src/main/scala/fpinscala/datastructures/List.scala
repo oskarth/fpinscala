@@ -51,6 +51,8 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(ns, 1.0)(_ * _) // `_ * _` is more concise notation for `(x,y) => x * y`; see sidebar
 
 
+  // Ex 3.8 I don't understand the question. We get back our list?
+
   def tail[A](l: List[A]): List[A] =
     l match {
       case Nil => Nil // often bug, sys.error("tail of empty list")
