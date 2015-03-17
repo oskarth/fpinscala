@@ -78,7 +78,21 @@ object List { // `List` companion object. Contains functions for creating and wo
         else Cons(h, t)
     }
 
-  def init[A](l: List[A]): List[A] = sys.error("todo")
+  // With this approach, it's probably better to have append in the natural order,
+  // then reverse it at the end. Alternatively, use a temp mutable buffer.
+  // Even better, just don't do it.
+  def init[A](l: List[A]): List[A] = {
+    def go(l: List[A], l2: List[A]): List[A] =
+      l match {
+        case Cons(x, Cons(y, z)) =>
+          go(Cons(y, z), List.append(l2, Cons(x, Nil)))
+        case _ => l2
+      }
+
+    go(l, Nil)
+  }
+
+
 
   def length[A](l: List[A]): Int = sys.error("todo")
 
