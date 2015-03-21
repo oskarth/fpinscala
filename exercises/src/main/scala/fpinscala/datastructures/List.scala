@@ -108,5 +108,19 @@ object List { // `List` companion object. Contains functions for creating and wo
     case Cons(x, xs) => foldLeft(xs, f(z, x))(f)
   }
 
+  def sum3(ns: List[Int]) =
+    foldLeft(ns, 0)((x,y) => x + y)
+
+  def product3(ns: List[Int]) =
+    foldLeft(ns, 1)((x,y) => x * y)
+
+  // Note the lack of type annotation and 0+ instead of 1+.
+  def length2(l: List[Int]): Int =
+    foldLeft(l, 0)((_,y) => 0 + y)
+
+  // Answer alternative, better
+  def length3[A](l: List[A]): Int =
+    foldLeft(l,0)((acc,h) => acc + 1)
+
   def map[A,B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }
